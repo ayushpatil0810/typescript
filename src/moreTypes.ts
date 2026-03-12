@@ -124,9 +124,6 @@ function redirectBasedOnRole(role: Role): void {
         return
     }
 
-    // BUG in your code:
-    // you used assignment (=) instead of comparison (== or ===)
-
     if (role === "user") {
         console.log("Redirecting to user dashboard")
         return
@@ -135,7 +132,7 @@ function redirectBasedOnRole(role: Role): void {
     // This line should theoretically never execute
     // because Role only allows "admin" or "user"
 
-    role // type becomes `never` here
+    role // type becomes `never` here and if Role has another value like "superadmin", then here the type becomes `superadmin`
 }
 
 
@@ -147,5 +144,5 @@ function neverReturn(): never {
     // `never` means the function NEVER finishes execution
     // It either throws an error or runs forever
 
-    while(true) {}
+    while (true) { }
 }
